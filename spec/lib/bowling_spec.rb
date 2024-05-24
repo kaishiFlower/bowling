@@ -33,15 +33,15 @@ describe "ボウリングのスコア計算" do
                 @game.add_score(5)
                 @game.add_score(4)
                 #以降はすべてガター
-                add_many_scores(12,0)
+                add_many_scores(14,0)
                 #合計を計算
                 @game.calc_score
                 #期待する合計
-                #10 + 5 + (10) + 10 + (10 + 10) + (5 + 5) + 4 + (4) = 83
-                expect(@game.total_score).to eq 83
+                #10 + 10 + (10) + 5 + (5 + 5) + 4 + (4) = 53
+                expect(@game.total_score).to eq 53
             end
         end
-        
+
         context "最終フレームでストライクを取った場合" do
             it "ストライクボーナスが加算されないこと" do
               # 第一フレームでストライク
