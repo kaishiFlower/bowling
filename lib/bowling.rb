@@ -35,7 +35,7 @@ class Bowling
             if score.inject(:+) == 10 && index < 10
                 @total_score += 10 + @scores[index].first
             else
-                @total_score = score.inject(:+)
+                @total_score += score.inject(:+)
             end
         end
     end
