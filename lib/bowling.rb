@@ -32,11 +32,27 @@ class Bowling
     def calc_score
         @scores.each.with_index(1) do |score, index|
             #　最終フレーム以外でのスペアなら、スコアにボーナスを含めて計算する
-            if score.inject(:+) == 10 && index < 10
-                @total_score += 10 + @scores[index].first
+            if spare?(score) && not_last_frame?(index)
+                @total_score += calc_spare_bonus(index)
             else
                 @total_score += score.inject(:+)
             end
         end
+    end
+
+    private
+    # スペアかどうか判定する関数
+    def spare?(score)
+        score.inject(:+) == 10
+    end
+
+    #最終フレーム以外かどうかを判定する関数
+    def not_last_frame?(index)
+        index < 10
+    end
+
+    #スペアボーナスを含んだ値でスコアを計算する
+    def calc_spare_bonus(index)
+        10 + @scores[index].first
     end
 end
